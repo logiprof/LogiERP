@@ -38,12 +38,6 @@ Le jeton n'est jamais enregistré en base ni affiché. Il n'est envoyé qu'à `a
 
 ## Publier une nouvelle version
 
-1. Dans `logierp.php`, mettez à jour `Version:` et `LOGIERP_VERSION`. Dans `readme.txt`, mettez à jour `Stable tag:` et ajoutez une section `= X.Y.Z =` au changelog.
-2. Committez, puis créez et poussez l'étiquette :
-
-   ```sh
-   git tag v2.3.1
-   git push origin main v2.3.1
-   ```
-
-3. L'action **Release** contrôle que les numéros concordent et la syntaxe PHP, puis construit `logierp-X.Y.Z.zip` et son empreinte. Elle publie ensuite la release, avec les notes tirées du changelog. Les sites la proposent dans les heures qui suivent (ou tout de suite avec « Rechercher les mises à jour »).
+1. Dans `logierp.php`, mettez à jour `Version:` et `LOGIERP_VERSION`. Dans `readme.txt`, mettez à jour `Stable tag:` et ajoutez une section `= X.Y.Z =` au changelog. Committez sur `main`.
+2. Sur GitHub, ouvrez l'onglet **Actions**, choisissez **Release**, puis cliquez sur **Run workflow**. Vous pouvez aussi pousser une étiquette `vX.Y.Z` (`git tag v2.3.1 && git push origin v2.3.1`).
+3. L'action contrôle que les quatre numéros concordent, que la release n'existe pas déjà et que la syntaxe PHP est correcte. Elle construit ensuite `logierp-X.Y.Z.zip` et son empreinte, puis publie la release avec les notes tirées du changelog. Les sites la proposent dans les heures qui suivent, ou tout de suite avec « Rechercher les mises à jour ».
