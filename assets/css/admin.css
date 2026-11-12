@@ -1,0 +1,135 @@
+/* LogiERP — espace enseignant (administration WordPress), charte LogiProf. */
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+.logierp-admin {
+    --ink: #313a45; --green: #067030; --green-deep: #0b4d22; --mint: #dcefe3;
+    --paper: #eef0eb; --line: #d9ddd6; --yellow: #f5c400; --yellow-soft: #fff4c2; --yellow-ink: #5c4800;
+    --red: #b42318; --red-soft: #fde7e4; --muted: #5b6672;
+    color: var(--ink);
+    max-width: 1400px;
+}
+.logierp-admin h1, .logierp-admin h2, .logierp-admin h3 { font-family: "LogiERP Poppins", system-ui, sans-serif; color: var(--ink); letter-spacing: -0.01em; }
+.logierp-admin h1 { font-size: 26px; font-weight: 700; margin: 6px 0 4px; }
+.logierp-admin h2 { font-size: 18px; font-weight: 600; margin: 0 0 12px; }
+.logierp-admin h3 { font-size: 15px; font-weight: 600; margin: 18px 0 8px; }
+.lw-admin-head { background: var(--ink); margin: 0 0 18px -20px; padding: 16px 20px; border-bottom: 4px solid var(--yellow); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.lw-admin-head .lw-space-badge { display: inline-flex; padding: 4px 14px; border-radius: 999px; background: var(--yellow); color: var(--ink); font: 700 12px/1.3 "LogiERP Poppins", system-ui, sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.lw-admin-logo { display: block; height: 44px; width: auto; }
+.lw-lead-admin { font-size: 14px; color: var(--muted); margin: 0 0 16px; max-width: 900px; }
+
+.lw-box { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 6px; padding: 18px 20px; margin: 0 0 20px; }
+.lw-box.yellow { border-top-color: var(--yellow); }
+.lw-box .form-table th { width: 230px; }
+.lw-toolbar-admin { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; }
+.lw-toolbar-admin form { margin: 0; }
+.lw-actions-cell { white-space: nowrap; }
+.lw-actions-cell form, .lw-actions-cell .button { margin: 2px 0; }
+.lw-table-admin td, .lw-table-admin th { vertical-align: middle; }
+.lw-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 14px; }
+.lw-pager { margin: 12px 0 0; }
+.lw-tabs { margin-bottom: 16px; }
+
+.logierp-admin .button-primary { background: var(--green); border-color: var(--green-deep); }
+.logierp-admin .button-primary:hover, .logierp-admin .button-primary:focus { background: var(--green-deep); border-color: var(--green-deep); }
+.logierp-admin .button.lw-danger { color: var(--red); border-color: var(--red); }
+.logierp-admin .button.lw-danger:hover { background: var(--red-soft); color: var(--red); }
+
+.lw-pill { display: inline-block; padding: 1px 8px; border-radius: 999px; background: var(--mint); color: var(--green-deep); font-size: 11px; font-weight: 600; vertical-align: middle; }
+.lw-pill.warn { background: var(--yellow-soft); color: var(--yellow-ink); }
+.lw-ok { color: var(--green); font-weight: 600; }
+.lw-ko { color: var(--red); font-weight: 600; }
+.lw-gr { display: inline-block; min-width: 34px; text-align: center; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+.lw-gr.good { background: var(--mint); color: var(--green-deep); }
+.lw-gr.mid { background: var(--yellow-soft); color: var(--yellow-ink); }
+.lw-gr.bad { background: var(--red-soft); color: var(--red); }
+
+.lw-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.lw-kpi { display: block; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--yellow); border-radius: 6px; padding: 16px 18px; text-decoration: none; color: var(--ink); }
+.lw-kpi:hover, .lw-kpi:focus { border-color: var(--green); color: var(--ink); }
+.lw-kpi strong { display: block; font-size: 30px; line-height: 1.1; font-family: "LogiERP Poppins", system-ui, sans-serif; }
+.lw-kpi span { color: var(--muted); }
+.lw-steps li { margin-bottom: 6px; }
+
+.lw-progress { max-width: 680px; }
+.lw-progress-bar { height: 14px; background: var(--paper); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.lw-progress-bar span { display: block; height: 100%; background: repeating-linear-gradient(-45deg, var(--yellow), var(--yellow) 10px, #e2b400 10px, #e2b400 20px); transition: width .3s ease; }
+.lw-progress[data-state="done"] .lw-progress-bar span { background: var(--green); }
+.lw-progress[data-state="error"] .lw-progress-bar span { background: var(--red); }
+.lw-progress-label { margin: 6px 0 0; color: var(--muted); }
+
+.lw-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px 28px; margin-top: 10px; }
+.lw-invite code { font-size: 22px; letter-spacing: .12em; padding: 6px 12px; background: var(--yellow-soft); }
+
+.lw-live-meta { color: var(--muted); margin: 0 0 8px; }
+#lw-live-body td { vertical-align: middle; }
+#lw-live-body .lw-idle { color: var(--red); font-weight: 600; }
+#lw-live-body .lw-intervene { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+#lw-live-body .lw-intervene select, #lw-live-body .lw-intervene input { max-width: 180px; }
+
+/* Plan de l'entrepôt et critères de zone */
+.lw-map-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: #f6f7f4; }
+.lw-map { display: block; width: 100%; min-width: 760px; height: auto; }
+.lw-map a rect:first-of-type { transition: stroke-width .15s ease; }
+.lw-map a:hover rect:first-of-type, .lw-map a:focus rect:first-of-type { stroke: #067030; stroke-width: 3; }
+.lw-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px 18px; }
+.lw-checks label { display: flex; align-items: center; gap: 6px; }
+.lw-num { width: 9em; }
+.lw-table-scroll { overflow-x: auto; }
+.lw-shortcodes code { white-space: nowrap; }
+.logierp-admin .notice ul { margin-top: 4px; }
+.lw-map a, .lw-map text { text-decoration: none; }
+
+/* Entreprise fictive */
+.lw-co-preview { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.lw-co-preview .lw-co-logo { color: #0e3b5c; }
+.lw-co-preview p { margin: 0; }
+.lw-co-preview .description { flex-basis: 100%; }
+.lw-info { color: #2271b1; font-weight: 700; }
+
+/* Photos de non-conformité (résultats) */
+.lw-photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:10px}
+.lw-photos figure{margin:0;background:#fff;border:1px solid #dcdfd8;border-radius:8px;overflow:hidden}
+.lw-photos img{display:block;width:100%;height:150px;object-fit:cover;background:#eef0eb}
+.lw-photos figcaption{padding:8px 10px;font-size:12.5px;line-height:1.35}
+
+/* Interventions en direct */
+.lw-intervene-box fieldset.lw-iv { border: 1px solid #dcdcde; border-radius: 6px; padding: 4px 14px 10px; margin: 10px 0; }
+.lw-intervene-box fieldset.lw-iv legend { font-weight: 600; padding: 0 6px; }
+.lw-intervene-box .lw-radio { display: inline-flex; gap: 6px; align-items: center; margin: 0 16px 6px 0; }
+.lw-iv-log td:first-child { white-space: nowrap; }
+
+/* Manuels */
+.lw-manuals { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; align-items: start; }
+.lw-manual-head { display: flex; gap: 14px; align-items: center; }
+.lw-manual-head h2 { margin: 0; }
+.lw-manual-head .description { margin: 2px 0 0; }
+.lw-manual-ico { flex: none; width: 40px; height: 50px; border-radius: 3px 12px 3px 3px; background: #c0392b; color: #fff; font: 700 12px/50px Arial, sans-serif; text-align: center; }
+.lw-manual-meta { color: #646970; }
+.lw-manual-toc, .lw-manual-admin { margin-top: 12px; border-top: 1px solid #e0e0e0; padding-top: 8px; }
+.lw-manual-toc summary, .lw-manual-admin summary { cursor: pointer; font-weight: 600; }
+.lw-manual-toc h3 { font-size: 13px; margin: 12px 0 4px; }
+.lw-manual-toc ul { margin: 0 0 0 4px; }
+.lw-manual-toc li { margin: 2px 0; }
+.lw-manual-toc a { text-decoration: none; }
+
+/* Groupes de travail et codes de mission (2.2) */
+.lw-pill.ok { background: var(--green); color: #fff; }
+.lw-radio { display: block; margin: 4px 0; }
+.lw-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 16px; margin: 6px 0 4px 22px; }
+.lw-checks label { display: block; }
+.lw-assign:has(input[name="work_mode"][value="GROUP"]:checked) .lw-for-indiv { display: none; }
+.lw-assign:not(:has(input[name="work_mode"][value="GROUP"]:checked)) .lw-for-group { display: none; }
+.lw-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin: 10px 0 6px; }
+.lw-group { border: 1px solid var(--line); border-left: 5px solid var(--yellow); border-radius: 6px; padding: 8px 10px; background: #fff; }
+.lw-group-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.lw-group-head input[type="text"] { width: 130px; font-weight: 600; }
+.lw-group ul { margin: 8px 0 0 18px; list-style: disc; }
+form.lw-inline { display: inline-flex; gap: 4px; align-items: center; margin: 0; }
+.lw-split { max-width: 560px; }
+code.lw-code { font-size: 15px; letter-spacing: .1em; padding: 3px 8px; background: var(--yellow-soft); border-radius: 4px; }
+.lw-codes { margin-bottom: 8px; }
+.lw-codes { table-layout: fixed; }
+.lw-codes th:nth-child(1) { width: 26%; } .lw-codes th:nth-child(2) { width: 16%; } .lw-codes th:nth-child(3) { width: 16%; }
+td .lw-pill { white-space: nowrap; }

@@ -1,0 +1,200 @@
+# Copyright (C) 2026 LogiProf
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: LogiERP 1.4.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/logierp\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-06T17:57:57+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: logierp\n"
+
+#. Plugin Name of the plugin
+#: logierp.php
+msgid "LogiERP"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: logierp.php
+msgid "https://logiprof.ch"
+msgstr ""
+
+#. Description of the plugin
+#: logierp.php
+msgid "Simulateur ERP/WMS pédagogique : achats, réception, entreposage chaotique ou par emplacements fixes, stock, ventes, préparation, expédition, production, inventaire, retours. Interface enseignant pour créer des scénarios et corriger automatiquement. Aux couleurs LogiOne / LogiHub."
+msgstr ""
+
+#. Author of the plugin
+#: logierp.php
+msgid "LogiProf"
+msgstr ""
+
+#. translators: 1: version requise, 2: version actuelle
+#: logierp.php:57
+msgid "LogiERP nécessite PHP %1$s ou plus récent (version actuelle : %2$s)."
+msgstr ""
+
+#. translators: 1: version requise, 2: version actuelle
+#: logierp.php:61
+msgid "LogiERP nécessite WordPress %1$s ou plus récent (version actuelle : %2$s)."
+msgstr ""
+
+#: logierp.php:65
+msgid "LogiERP nécessite le moteur de base de données InnoDB."
+msgstr ""
+
+#: logierp.php:76
+msgid "Activation impossible"
+msgstr ""
+
+#: src/Admin/AdminMenu.php:95
+#: src/Admin/ClassesPage.php:301
+#: src/Admin/DataPage.php:318
+#: src/Admin/Ui.php:232
+msgid "Accès refusé."
+msgstr ""
+
+#: src/Admin/ClassesPage.php:45
+#: src/Admin/ClassesPage.php:100
+msgid "Classe introuvable."
+msgstr ""
+
+#: src/Admin/DataPage.php:184
+#: src/Admin/DataPage.php:280
+msgid "Enregistrement introuvable."
+msgstr ""
+
+#: src/Admin/DataPage.php:272
+#: src/Admin/DataPage.php:314
+#: src/Admin/DataPage.php:341
+msgid "Requête invalide."
+msgstr ""
+
+#: src/Admin/DataPage.php:321
+msgid "L'extension PHP « zip » n'est pas active sur ce serveur : impossible de produire un fichier Excel."
+msgstr ""
+
+#: src/Admin/ResultsPage.php:52
+msgid "Session introuvable."
+msgstr ""
+
+#: src/Admin/ResultsPage.php:60
+msgid "Le scénario de cette session a été supprimé."
+msgstr ""
+
+#: src/Admin/ResultsPage.php:220
+msgid "Lien expiré."
+msgstr ""
+
+#: src/Admin/ResultsPage.php:225
+msgid "Photo introuvable."
+msgstr ""
+
+#: src/Admin/ResultsPage.php:280
+msgid "Assignation introuvable."
+msgstr ""
+
+#: src/Admin/ScenariosPage.php:70
+msgid "Scénario introuvable ou non modifiable."
+msgstr ""
+
+#: src/Admin/ScenariosPage.php:129
+#: src/Admin/ScenariosPage.php:441
+#: src/Admin/ScenariosPage.php:482
+msgid "Scénario introuvable."
+msgstr ""
+
+#: src/Admin/WarehousePage.php:175
+#: src/Admin/WarehousePage.php:546
+#: src/Admin/WarehousePage.php:607
+#: src/Admin/WarehousePage.php:698
+msgid "Zone introuvable."
+msgstr ""
+
+#: src/Core/Activator.php:52
+#: src/Front/App.php:116
+#: src/Front/App.php:120
+msgid "Simulateur LogiERP"
+msgstr ""
+
+#: src/Core/Capabilities.php:33
+msgid "Enseignant LogiERP"
+msgstr ""
+
+#: src/Core/Capabilities.php:37
+msgid "Apprenant LogiERP"
+msgstr ""
+
+#: src/Core/Capabilities.php:41
+msgid "Observateur LogiERP"
+msgstr ""
+
+#: src/Core/Migrator.php:27
+msgid "LogiERP : la mise à jour de la base de données a échoué. Les données sont intactes. Consultez Outils LogiERP › Santé."
+msgstr ""
+
+#: src/Front/App.php:116
+msgid "Connectez-vous pour accéder à vos scénarios."
+msgstr ""
+
+#: src/Front/App.php:116
+msgid "Se connecter"
+msgstr ""
+
+#: src/Front/App.php:120
+msgid "Votre compte n'a pas encore accès au simulateur. Saisissez le code d'invitation donné par votre enseignant, ou demandez-lui de vous inscrire dans une classe."
+msgstr ""
+
+#: src/Front/App.php:122
+msgid "Code invalide ou expiré."
+msgstr ""
+
+#: src/Front/App.php:124
+msgid "Code d'invitation"
+msgstr ""
+
+#: src/Front/App.php:124
+msgid "Rejoindre"
+msgstr ""
+
+#: src/Front/App.php:129
+msgid "LogiERP nécessite JavaScript."
+msgstr ""
+
+#: src/Front/App.php:129
+msgid "Chargement du simulateur…"
+msgstr ""
+
+#: src/Security/Privacy.php:19
+#: src/Security/Privacy.php:27
+msgid "LogiERP – sessions et résultats"
+msgstr ""
+
+#: src/Security/Privacy.php:44
+msgid "Sessions LogiERP"
+msgstr ""
+
+#: src/Security/Privacy.php:47
+msgid "Scénario"
+msgstr ""
+
+#: src/Security/Privacy.php:48
+msgid "Statut"
+msgstr ""
+
+#: src/Security/Privacy.php:49
+msgid "Note"
+msgstr ""
+
+#: src/Security/Privacy.php:50
+msgid "Début"
+msgstr ""
+
+#: src/Security/Privacy.php:51
+msgid "Photos de non-conformité"
+msgstr ""

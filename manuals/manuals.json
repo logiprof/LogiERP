@@ -1,0 +1,417 @@
+{
+"domains": {
+"A": "Prise en main",
+"B": "Achats et réception",
+"C": "Entrepôt et stock",
+"D": "Qualité",
+"E": "Ventes et préparation de commandes",
+"F": "Transport et emballages consignés",
+"G": "Planification et production",
+"H": "Inventaire",
+"I": "Retours clients",
+"M": "Terminal mobile (smartphone)",
+"S": "Application sur smartphone",
+"T.1": "Prise en main",
+"T.2": "Classes et apprentis",
+"T.3": "Concevoir un scénario",
+"T.4": "Étiquettes code-barres",
+"T.5": "Piloter la classe",
+"T.6": "Résultats",
+"T.7": "Données de base",
+"P": "Procédures de l’entreprise (SAP)"
+},
+"teacher": {
+"pages": 99,
+"procedures": {
+"T.1.0": {
+"page": 5,
+"title": "Ouvrir LogiERP (tableau de bord)"
+},
+"T.1.1": {
+"page": 7,
+"title": "Travailler depuis l’espace enseignant du site"
+},
+"T.1.2": {
+"page": 8,
+"title": "Lire et télécharger les manuels"
+},
+"T.2.0": {
+"page": 11,
+"title": "Créer une classe"
+},
+"T.2.1": {
+"page": 13,
+"title": "Inscrire les apprentis"
+},
+"T.2.2": {
+"page": 15,
+"title": "Reprendre un groupe Sensei"
+},
+"T.2.3": {
+"page": 17,
+"title": "Créer des groupes de travail"
+},
+"T.3.0": {
+"page": 20,
+"title": "Choisir et tester un scénario modèle"
+},
+"T.3.1": {
+"page": 22,
+"title": "Créer un scénario : cadre et environnement"
+},
+"T.3.10": {
+"page": 40,
+"title": "Les documents logistiques (commandes, bulletins de livraison, CMR)"
+},
+"T.3.2": {
+"page": 25,
+"title": "Préparer les documents : commandes et réalité de la livraison"
+},
+"T.3.3": {
+"page": 28,
+"title": "Définir le stock de départ"
+},
+"T.3.4": {
+"page": 29,
+"title": "Programmer des imprévus"
+},
+"T.3.5": {
+"page": 31,
+"title": "Rédiger les consignes"
+},
+"T.3.6": {
+"page": 32,
+"title": "Définir la correction automatique"
+},
+"T.3.7": {
+"page": 34,
+"title": "Tester, publier et partager un scénario"
+},
+"T.3.8": {
+"page": 35,
+"title": "Le document d’activité (fiche de mission)"
+},
+"T.3.9": {
+"page": 39,
+"title": "Dupliquer et adapter un scénario existant"
+},
+"T.4.0": {
+"page": 44,
+"title": "Imprimer des étiquettes d’articles (EAN-13)"
+},
+"T.4.1": {
+"page": 46,
+"title": "Imprimer des étiquettes d’emplacements"
+},
+"T.4.2": {
+"page": 47,
+"title": "Imprimer les étiquettes des palettes d’un arrivage (SSCC)"
+},
+"T.4.3": {
+"page": 49,
+"title": "Étiquettes de documents et étiquettes libres"
+},
+"T.4.4": {
+"page": 51,
+"title": "Monter un mini-entrepôt en classe (kit)"
+},
+"T.5.0": {
+"page": 56,
+"title": "Assigner un scénario et distribuer le document d’activité"
+},
+"T.5.1": {
+"page": 59,
+"title": "Suivre la classe en direct, envoyer un message, mettre en pause"
+},
+"T.5.2": {
+"page": 60,
+"title": "Déclencher un imprévu en direct"
+},
+"T.5.3": {
+"page": 61,
+"title": "Contrôler le travail d’un apprenti"
+},
+"T.5.4": {
+"page": 62,
+"title": "Intervenir dans la mission : client, rupture, commande urgente"
+},
+"T.5.5": {
+"page": 65,
+"title": "Mission en groupe et codes personnels"
+},
+"T.6.0": {
+"page": 70,
+"title": "Corriger, ajuster et publier les notes"
+},
+"T.6.1": {
+"page": 73,
+"title": "Le tableau d’indicateurs de fin de mission"
+},
+"T.7.0": {
+"page": 78,
+"title": "Créer un article et imprimer son étiquette"
+}
+}
+},
+"user": {
+"pages": 173,
+"procedures": {
+"A.1.0": {
+"page": 8,
+"title": "Se connecter et rejoindre sa classe"
+},
+"A.1.1": {
+"page": 10,
+"title": "Commencer une mission et découvrir l’entreprise"
+},
+"A.1.2": {
+"page": 14,
+"title": "L’écran de travail : transactions, consignes, journal"
+},
+"A.1.3": {
+"page": 17,
+"title": "Remettre sa session"
+},
+"A.1.4": {
+"page": 19,
+"title": "Ouvrir le manuel d’utilisation"
+},
+"A.1.5": {
+"page": 20,
+"title": "Commencer une mission avec votre code personnel (seul ou en groupe)"
+},
+"B.1.0": {
+"page": 23,
+"title": "Commander un article sous le point de commande"
+},
+"B.1.1": {
+"page": 25,
+"title": "Afficher une commande d’achat"
+},
+"B.2.0": {
+"page": 27,
+"title": "Entrée marchandise fournisseur (gestion simple)"
+},
+"B.2.1": {
+"page": 29,
+"title": "Entrée marchandise avec écarts et réserves"
+},
+"B.2.2": {
+"page": 32,
+"title": "Arrivage international : lettre de voiture CMR"
+},
+"B.2.3": {
+"page": 35,
+"title": "Étiquettes palettes SSCC d’un arrivage"
+},
+"B.3.0": {
+"page": 36,
+"title": "Retour au fournisseur"
+},
+"C.1.0": {
+"page": 39,
+"title": "Ranger une marchandise reçue (entreposage)"
+},
+"C.1.1": {
+"page": 42,
+"title": "Réapprovisionner un emplacement de prélèvement (min/max)"
+},
+"C.1.2": {
+"page": 44,
+"title": "Transférer du stock d’un emplacement à un autre"
+},
+"C.1.3": {
+"page": 46,
+"title": "Mettre du stock en quarantaine"
+},
+"C.2.0": {
+"page": 48,
+"title": "Changer le statut d’un stock"
+},
+"C.2.1": {
+"page": 50,
+"title": "Sortir du stock : rebut, consommation, échantillon"
+},
+"C.3.0": {
+"page": 52,
+"title": "Consulter le stock d’un article"
+},
+"C.3.1": {
+"page": 54,
+"title": "Retrouver les mouvements de marchandises"
+},
+"C.3.2": {
+"page": 55,
+"title": "Voir les emplacements et le plan de l’entrepôt"
+},
+"C.3.3": {
+"page": 58,
+"title": "Consulter un article, un fournisseur, un client"
+},
+"D.1.0": {
+"page": 61,
+"title": "Contrôle qualité à la réception : échantillon et décision d’emploi"
+},
+"D.1.1": {
+"page": 65,
+"title": "Décision non conforme : retour au fournisseur ou destruction"
+},
+"D.2.0": {
+"page": 67,
+"title": "Surveiller les dates limites (DLC) et traiter un lot périmé"
+},
+"E.1.0": {
+"page": 70,
+"title": "Créer une commande client"
+},
+"E.1.1": {
+"page": 72,
+"title": "Afficher une commande client"
+},
+"E.2.0": {
+"page": 74,
+"title": "Créer la livraison et prélever (préparation en série)"
+},
+"E.2.1": {
+"page": 76,
+"title": "Emballer et expédier une livraison"
+},
+"E.3.0": {
+"page": 78,
+"title": "Lancer la préparation en parallèle (VL10)"
+},
+"E.3.1": {
+"page": 81,
+"title": "Regrouper et coliser une commande (palette mixte, SSCC)"
+},
+"F.1.0": {
+"page": 86,
+"title": "Planifier une tournée de livraison"
+},
+"F.1.1": {
+"page": 89,
+"title": "Départ et retour du camion, emballages consignés"
+},
+"G.1.0": {
+"page": 93,
+"title": "Analyser les besoins et créer les propositions"
+},
+"G.1.1": {
+"page": 95,
+"title": "Créer et lancer un ordre de fabrication"
+},
+"G.1.2": {
+"page": 96,
+"title": "Approvisionner le bord de ligne, consommer et déclarer la production"
+},
+"H.1.0": {
+"page": 100,
+"title": "Inventaire tournant : créer, compter, comptabiliser"
+},
+"I.1.0": {
+"page": 105,
+"title": "Enregistrer et traiter un retour client"
+},
+"M.1.0": {
+"page": 143,
+"title": "Ouvrir le terminal mobile (MDE)"
+},
+"M.2.0": {
+"page": 145,
+"title": "Réceptionner les palettes par scan (SSCC), avarie et photo"
+},
+"M.3.0": {
+"page": 147,
+"title": "Ranger une palette avec le terminal"
+},
+"M.4.0": {
+"page": 149,
+"title": "Prélever une commande par secteur (préparation en parallèle)"
+},
+"M.5.0": {
+"page": 151,
+"title": "Regrouper et coliser au terminal (palette mixte)"
+},
+"M.6.0": {
+"page": 153,
+"title": "Consulter le stock et mettre en quarantaine au terminal"
+},
+"M.7.0": {
+"page": 155,
+"title": "Compter au rayon (inventaire au terminal)"
+},
+"M.8.0": {
+"page": 156,
+"title": "Prélever un échantillon pour la qualité"
+},
+"P.1.0": {
+"page": 109,
+"title": "Mouvement de stock par code mouvement (MB11)"
+},
+"P.1.1": {
+"page": 111,
+"title": "Afficher et annuler un document d’article (MB03, MBST)"
+},
+"P.1.2": {
+"page": 113,
+"title": "Stock de l’entrepôt, quittancer et réimprimer (LS26, LT13, LT31)"
+},
+"P.2.0": {
+"page": 115,
+"title": "Retrouver une commande et les arrivages (ME2L, Y_P01)"
+},
+"P.2.1": {
+"page": 117,
+"title": "Modifier une commande d’achat (ME22N)"
+},
+"P.2.2": {
+"page": 119,
+"title": "Réception d’un transfert entre sites (MIGO_GR)"
+},
+"P.3.0": {
+"page": 121,
+"title": "Modifier une commande client (VA02, VA05)"
+},
+"P.3.1": {
+"page": 123,
+"title": "Corriger une livraison et ses messages (VL02N, LT15)"
+},
+"P.3.2": {
+"page": 125,
+"title": "Sortie collective et annulation (VL06O, VL09, VL74)"
+},
+"P.4.0": {
+"page": 126,
+"title": "Créer et lancer un ordre de procédé (CS03, COR1, COR5)"
+},
+"P.4.1": {
+"page": 128,
+"title": "Confirmer, annuler et clôturer un ordre (CORK, CORS, COR2)"
+},
+"P.5.0": {
+"page": 131,
+"title": "Conteneurs loués : retour, contrôle et portail (ZVLGUT, MB58, ZPEMB)"
+},
+"P.5.1": {
+"page": 134,
+"title": "Wagon-citerne : portail, réception et perte (ZRAIL, LT12, LI21)"
+},
+"P.6.0": {
+"page": 135,
+"title": "Livraisons du jour et création groupée des transports (VL06T, VT04)"
+},
+"P.6.1": {
+"page": 137,
+"title": "Plan des transports du jour (VT11)"
+},
+"P.6.2": {
+"page": 139,
+"title": "Bulletins, papiers de transport et départ (VL71, VT70, VT02N)"
+},
+"S.1.0": {
+"page": 158,
+"title": "Utiliser toute l’application sur smartphone"
+}
+}
+}
+}

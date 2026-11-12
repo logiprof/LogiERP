@@ -1,0 +1,60 @@
+# Publication d'une version : pousser une étiquette vX.Y.Z (identique à « Version » dans logierp.php).
+# Le paquet logierp-X.Y.Z.zip et son empreinte .sha256 sont joints à la release ;
+# les sites WordPress les détectent ensuite dans Extensions › Mises à jour.
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Contrôle du numéro de version
+        id: v
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          HEAD_V=$(sed -n 's/^ \* Version: *//p' logierp.php | tr -d '\r ')
+          CONST_V=$(sed -n "s/^define( 'LOGIERP_VERSION', '\([0-9.]*\)' );/\1/p" logierp.php)
+          STABLE=$(sed -n 's/^Stable tag: *//p' readme.txt | tr -d '\r ')
+          echo "Étiquette $TAG · en-tête $HEAD_V · constante $CONST_V · readme $STABLE"
+          [[ "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::Étiquette invalide"; exit 1; }
+          [ "$TAG" = "$HEAD_V" ] && [ "$TAG" = "$CONST_V" ] && [ "$TAG" = "$STABLE" ] || { echo "::error::Les numéros de version ne concordent pas"; exit 1; }
+          echo "version=$TAG" >> "$GITHUB_OUTPUT"
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      - name: Contrôle de syntaxe PHP (8.1)
+        run: find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+
+      - name: Paquet et empreinte
+        run: |
+          V='${{ steps.v.outputs.version }}'
+          git archive --format=zip --prefix=logierp/ -o "logierp-$V.zip" HEAD
+          unzip -l "logierp-$V.zip" | grep -q ' logierp/logierp.php$'
+          sha256sum "logierp-$V.zip" > "logierp-$V.zip.sha256"
+          cat "logierp-$V.zip.sha256"
+
+      - name: Notes de version (readme.txt)
+        run: |
+          V='${{ steps.v.outputs.version }}'
+          awk -v v="= $V =" '$0==v{f=1;next} /^= [0-9]/{if(f)exit} f' readme.txt > notes.md
+          [ -s notes.md ] || echo "Version $V" > notes.md
+          cat notes.md
+
+      - name: Publication de la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V='${{ steps.v.outputs.version }}'
+          gh release create "$GITHUB_REF_NAME" "logierp-$V.zip" "logierp-$V.zip.sha256" \
+            --title "LogiERP $V" --notes-file notes.md --verify-tag

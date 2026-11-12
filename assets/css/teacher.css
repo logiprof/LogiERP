@@ -1,0 +1,151 @@
+/* =====================================================================
+   LogiERP — espace enseignant sur le site (code court [logierp_enseignant]).
+   Reprend la charte de l'administration ; les éléments de base de WordPress
+   (boutons, tableaux, champs, notices, onglets) sont redéfinis ici pour ne
+   pas dépendre du thème. Tout est limité à .logierp-teacher.
+   ===================================================================== */
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "LogiERP Poppins"; src: url("../fonts/poppins-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+.logierp-teacher {
+    --ink: #313a45; --ink-deep: #252c35; --green: #067030; --green-bright: #2fae5f; --green-deep: #0b4d22; --mint: #dcefe3;
+    --paper: #eef0eb; --line: #d9ddd6; --yellow: #f5c400; --yellow-soft: #fff4c2; --yellow-ink: #5c4800;
+    --red: #b42318; --red-soft: #fde7e4; --muted: #5b6672; --on-ink: #c9d1d9;
+    --gutter: clamp(16px, 3vw, 40px);
+    --lw-font: "LogiERP Poppins", "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+    /* Pleine largeur : sort de la colonne du thème (--lw-vw calculée par admin.js). */
+    position: relative;
+    left: calc(50% - var(--lw-vw, 100vw) / 2);
+    width: var(--lw-vw, 100vw);
+    max-width: var(--lw-vw, 100vw) !important;
+    margin: 0 0 40px !important;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--lw-font);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+    overflow-x: clip;
+}
+.logierp-teacher *, .logierp-teacher *::before, .logierp-teacher *::after { box-sizing: border-box; }
+.logierp-teacher :focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.lpp-tool .logierp-teacher { left: auto; width: 100%; max-width: 100% !important; }
+
+/* ── Bandeau (même charte que le simulateur des apprentis) ── */
+.lw-t-head { background: var(--ink); color: #fff; padding: 0 var(--gutter); }
+.lw-t-head > * { max-width: 1400px; margin-left: auto; margin-right: auto; }
+.lw-t-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding: 20px 0 12px; }
+.lw-t-brandrow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.logierp-teacher .lw-brand { display: block; line-height: 0; }
+.logierp-teacher .lw-logo { display: block; height: 56px; width: auto; max-width: 100%; }
+.lw-space-badge { display: inline-flex; align-items: center; padding: 4px 14px; border-radius: 999px; font: 700 13px/1.3 var(--lw-font); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+.lw-space-badge.teacher { background: var(--yellow); color: var(--ink); }
+.logierp-teacher .lw-user { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; font: 14px var(--lw-font); color: var(--on-ink); }
+.logierp-teacher .lw-user strong { color: #fff; font-weight: 600; }
+.logierp-teacher .lw-user a { color: #fff; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; }
+.logierp-teacher .lw-user a:hover { border-bottom-color: var(--green-bright); }
+.lw-t-main { display: grid; grid-template-columns: minmax(0, 1fr); align-items: end; gap: 24px; }
+.lw-t-main.has-art { grid-template-columns: minmax(0, 1fr) auto; }
+.lw-t-text { padding: 10px 0 22px; min-width: 0; }
+.logierp-teacher .lw-t-kicker { margin: 0 0 6px; color: var(--green-bright); font: 600 15px var(--lw-font); }
+.logierp-teacher h1.lw-t-title { margin: 0 0 8px; color: #fff; font: 700 clamp(26px, 3.4vw, 42px)/1.08 var(--lw-font); letter-spacing: -0.02em; }
+.lw-t-main.has-art h1.lw-t-title { font-size: clamp(32px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.03em; }
+.logierp-teacher .lw-t-lead { margin: 0; max-width: 70ch; color: var(--on-ink); font: 16px/1.5 var(--lw-font); }
+.lw-t-art { width: clamp(130px, 15vw, 210px); margin-bottom: -26px; position: relative; z-index: 1; align-self: end; }
+.lw-t-art .lw-iso { display: block; width: 100%; height: auto; }
+.lw-t-art .lw-iso polygon { stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
+.lw-t-art .lw-iso .t { fill: var(--green-bright); } .lw-t-art .lw-iso .l { fill: var(--green-deep); } .lw-t-art .lw-iso .r { fill: var(--green); }
+.lw-t-art .lw-iso .mark .t, .lw-t-art .lw-iso .mark .r { fill: var(--yellow); } .lw-t-art .lw-iso .mark .l { fill: #d9a900; }
+.lw-t-art .lw-iso .pal .t { fill: #c9a36b; } .lw-t-art .lw-iso .pal .l { fill: #8d6e45; } .lw-t-art .lw-iso .pal .r { fill: #a8865a; }
+@keyframes lw-t-drop { from { opacity: 0; transform: translateY(-36px); } to { opacity: 1; transform: none; } }
+.lw-t-art .lw-iso .c { animation: lw-t-drop .5s cubic-bezier(.2, .9, .3, 1.2) both; animation-delay: calc(var(--i) * 70ms + 120ms); }
+.lw-t-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 22px 0 0; }
+.logierp-teacher .lw-t-nav a { display: inline-flex; align-items: center; padding: 7px 16px; border-radius: 999px; border: 2px solid rgba(255,255,255,.28); color: #fff; font: 600 14px/1.25 var(--lw-font); text-decoration: none; }
+.logierp-teacher .lw-t-nav a:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+.logierp-teacher .lw-t-nav a.active { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
+@media (max-width: 782px) { .lw-t-main.has-art { grid-template-columns: minmax(0, 1fr); } .lw-t-art { display: none; } }
+
+.lw-t-body { max-width: calc(1400px + 2 * var(--gutter)); margin: 0 auto; padding: 36px var(--gutter) 56px; }
+.lw-t-card { max-width: 560px; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 6px; padding: 22px 24px; }
+.logierp-teacher .wrap { margin: 0; max-width: none; }
+.logierp-teacher h1, .logierp-teacher h2, .logierp-teacher h3 { font-family: var(--lw-font); color: var(--ink); line-height: 1.25; text-transform: none; }
+.logierp-teacher h1 { font-size: 26px; font-weight: 700; margin: 0 0 4px; }
+.logierp-teacher h2 { font-size: 18px; font-weight: 600; margin: 0 0 12px; }
+.logierp-teacher h3 { font-size: 15px; font-weight: 600; margin: 18px 0 8px; }
+.logierp-teacher p { margin: 0 0 12px; }
+.logierp-teacher a { color: var(--green); }
+.logierp-teacher code { font-size: 13px; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
+.logierp-teacher .description { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+
+/* ── Boutons ─────────────────────────────────────────────── */
+.logierp-teacher .button, .logierp-teacher button.button, .logierp-teacher a.button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    min-height: 34px; padding: 5px 16px; margin: 0;
+    font: 600 13px/1.4 var(--lw-font); letter-spacing: 0; text-transform: none; text-decoration: none; white-space: nowrap;
+    color: var(--ink); background: #fff; border: 2px solid var(--line); border-radius: 999px; box-shadow: none; cursor: pointer; vertical-align: middle;
+}
+.logierp-teacher .button:hover, .logierp-teacher .button:focus { background: #fff; color: var(--ink); border-color: var(--ink); }
+.logierp-teacher .button-primary, .logierp-teacher button.button-primary { background: var(--green); color: #fff; border-color: var(--green); }
+.logierp-teacher .button-primary:hover, .logierp-teacher .button-primary:focus { background: var(--green-deep); color: #fff; }
+.logierp-teacher .button-small { min-height: 26px; padding: 2px 8px; font-size: 12px; }
+.logierp-teacher .button.lw-danger { color: var(--red); border-color: var(--red); background: #fff; }
+.logierp-teacher .button.lw-danger:hover { background: var(--red-soft); }
+.logierp-teacher .button:disabled { opacity: .55; cursor: default; }
+
+/* ── Champs ─────────────────────────────────────────────── */
+.logierp-teacher input[type=text], .logierp-teacher input[type=search], .logierp-teacher input[type=number], .logierp-teacher input[type=email],
+.logierp-teacher input[type=date], .logierp-teacher input[type=datetime-local], .logierp-teacher input[type=password], .logierp-teacher input[type=file],
+.logierp-teacher select, .logierp-teacher textarea {
+    width: auto; max-width: 100%; min-height: 32px; margin: 0; padding: 4px 8px;
+    font: 14px/1.4 var(--lw-font); color: var(--ink);
+    background: #fff; border: 1px solid #b7bec6; border-radius: 6px; box-shadow: none;
+}
+.logierp-teacher input[type=file] { border-style: dashed; padding: 6px; }
+.logierp-teacher input:focus, .logierp-teacher select:focus, .logierp-teacher textarea:focus { border-color: var(--green); outline: 2px solid var(--mint); }
+.logierp-teacher input[type=checkbox], .logierp-teacher input[type=radio] { width: 16px; height: 16px; margin: 0 4px 0 0; vertical-align: -3px; accent-color: var(--green); }
+.logierp-teacher .regular-text { width: 25em; }
+.logierp-teacher .large-text { width: 100%; }
+.logierp-teacher .small-text { width: 6em; }
+.logierp-teacher label { font-weight: 400; display: inline; margin: 0; }
+
+/* ── Tableaux ───────────────────────────────────────────── */
+.logierp-teacher table { margin: 0; border-spacing: 0; }
+.logierp-teacher .widefat { width: 100%; border: 1px solid var(--line); border-collapse: collapse; background: #fff; font-size: 13px; }
+.logierp-teacher .widefat th, .logierp-teacher .widefat td { padding: 8px 10px; border: 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+.logierp-teacher .widefat thead th, .logierp-teacher .widefat thead td { font-weight: 600; background: #f6f7f4; color: var(--ink); }
+.logierp-teacher .striped > tbody > tr:nth-child(odd) { background: #fafbf8; }
+.logierp-teacher .form-table { width: 100%; border-collapse: collapse; border: 0; background: transparent; }
+.logierp-teacher .form-table th, .logierp-teacher .form-table td { padding: 10px 10px 10px 0; border: 0; vertical-align: top; text-align: left; background: transparent; }
+.logierp-teacher .form-table th { width: 230px; font-weight: 600; padding-top: 14px; }
+.lw-table-scroll, .logierp-teacher .lw-box { overflow-x: auto; }
+
+/* ── Notices et onglets ─────────────────────────────────── */
+.logierp-teacher .notice { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 4px; padding: 8px 14px; margin: 0 0 16px; }
+.logierp-teacher .notice p { margin: 4px 0; }
+.logierp-teacher .notice-error { border-left-color: var(--red); background: var(--red-soft); }
+.logierp-teacher .notice-warning { border-left-color: var(--yellow); background: var(--yellow-soft); }
+.logierp-teacher .nav-tab-wrapper { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin: 0 0 16px; padding: 0; }
+.logierp-teacher .nav-tab { display: block; padding: 8px 14px; margin: 0 0 -1px; font: 500 14px var(--lw-font); color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 6px 6px 0 0; background: #f6f7f4; }
+.logierp-teacher .nav-tab-active, .logierp-teacher .nav-tab:hover { color: var(--ink); background: #fff; border-bottom-color: #fff; }
+
+@media (max-width: 782px) {
+    .logierp-teacher .form-table th, .logierp-teacher .form-table td { display: block; width: 100%; padding: 6px 0; }
+    .logierp-teacher .regular-text { width: 100%; }
+    .logierp-teacher .lw-logo { height: 40px; }
+}
+.logierp-teacher a.button-primary, .logierp-teacher .button.button-primary { background: var(--green); color: #fff; border-color: var(--green-deep); }
+.logierp-teacher a.button-primary:hover, .logierp-teacher .button.button-primary:hover { background: var(--green-deep); color: #fff; }
+.logierp-teacher .lw-map a, .logierp-teacher .lw-map text { text-decoration: none; }
+
+/* Cadres : blancs, coins arrondis et filet de couleur en haut, comme les cartes du simulateur. */
+.logierp-teacher .lw-box { background: #fff; border: 0; border-top: 6px solid var(--green); border-radius: 6px; padding: 22px 24px; margin: 0 0 20px; box-shadow: none; }
+.logierp-teacher .lw-box.yellow { border-top-color: var(--yellow); }
+.logierp-teacher .lw-box h2 { font-size: 19px; font-weight: 700; }
+.logierp-teacher .lw-kpis > div, .logierp-teacher .lw-kpi { border-radius: 6px; }
+.logierp-teacher .widefat { border-radius: 6px; overflow: hidden; }
+.logierp-teacher .notice { border-radius: 6px; }
+.logierp-teacher .lw-manual-ico { font-family: var(--lw-font); }
+.logierp-teacher .lw-kpi { border: 0; border-top: 6px solid var(--yellow); padding: 20px 22px; }
+.logierp-teacher .lw-kpi strong { font-size: 34px; font-weight: 700; color: var(--green); }
