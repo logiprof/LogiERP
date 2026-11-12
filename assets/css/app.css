@@ -765,7 +765,10 @@ body.lw-sheet-on { overflow: hidden; }
 .lw-kpilink { margin-left: 10px; }
 
 /* Manuel d'utilisation (portail) */
+.lw-docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 0 18px; }
 .lw-manual-banner { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; background: var(--white); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 26px; border-left: 6px solid #c0392b; }
+.lw-docs .lw-manual-banner + .lw-manual-banner .lw-manual-ico { background: #067030; }
+.lw-docs .lw-manual-banner + .lw-manual-banner { border-left-color: #067030; }
 .lw-manual-banner > div:not(.lw-manual-actions) { flex: 1; min-width: 200px; }
 .lw-manual-banner p { margin: 2px 0 0; }
 .lw-manual-ico { flex: none; width: 44px; height: 54px; border-radius: 4px 14px 4px 4px; background: #c0392b; color: #fff; font: 700 13px/54px var(--font, Arial); text-align: center; letter-spacing: .04em; }

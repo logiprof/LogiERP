@@ -106,6 +106,7 @@ final class App {
 			'user'      => array( 'name' => $user->display_name, 'first' => $user->first_name ?: $user->display_name ),
 			'company'   => is_user_logged_in() ? \LogiERP\Domain\Company::for_app() : null,
 			'manual'    => Manuals::can( 'user' ) && Manuals::info( 'user' )['exists'] ? array( 'url' => esc_url_raw( Manuals::url( 'user' ) ), 'download' => esc_url_raw( Manuals::url( 'user', true ) ), 'pages' => Manuals::tx_pages() ) : null,
+			'fiches'    => Manuals::can( 'fiches' ) && Manuals::info( 'fiches' )['exists'] ? array( 'url' => esc_url_raw( Manuals::url( 'fiches' ) ), 'download' => esc_url_raw( Manuals::url( 'fiches', true ) ), 'pages' => Manuals::fiche_pages() ) : null,
 		);
 		wp_add_inline_script( 'logierp-app', 'window.LOGIERP = ' . wp_json_encode( $data ) . ';', 'before' );
 	}

@@ -3,7 +3,7 @@ Contributors: logiprof
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv2 or later
 
 Simulateur ERP / WMS pédagogique pour la formation en logistique (CFC logisticien·ne et formations continues).
@@ -56,6 +56,12 @@ gestion de stock, ordres de transfert, ventes, préparation FIFO / FEFO, emballa
 * La suppression de l'extension conserve les données, sauf si l'option correspondante est cochée.
 
 == Changelog ==
+
+= 2.3.2 =
+* Fiches de procédure dans l'application : la procédure générale (PR-00) et les fiches PR-01 à PR-12 (processus et transactions) sont un document à part, sur le portail des apprentis et dans LogiERP › Manuels, avec un sommaire par fiche.
+* Nouveau bouton « Fiche » dans chaque mission : il ouvre la fiche du processus de la transaction affichée (ex. MIGO → PR-02 Réception des marchandises), à côté du bouton « Manuel ».
+* Manuels toujours à jour : l'adresse de chaque PDF change avec sa version (le navigateur ne peut plus afficher une ancienne copie en cache) ; si la copie dans le dossier privé échoue, la version livrée est servie directement ; un PDF déposé par un administrateur et devenu plus ancien que la version livrée est signalé, avec le bouton pour revenir à la version livrée.
+* Manuels mis à jour : nouvelle procédure T.1.3 « Mettre à jour LogiERP », T.1.2 et A.1.4 (manuels et fiches), écran de travail (A.1.2).
 
 = 2.3.1 =
 * Réglages › Mises à jour : la première vérification se lance d'elle-même à l'ouverture de la page (résultat ensuite gardé en cache plusieurs heures).

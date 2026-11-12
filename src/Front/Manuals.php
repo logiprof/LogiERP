@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Manuels PDF consultables et téléchargeables depuis l'outil.
  *
  *  - « user »    : manuel d'utilisation (apprentis, et enseignants) ;
- *  - « teacher » : manuel de l'enseignant (enseignants seulement).
+ *  - « teacher » : manuel de l'enseignant (enseignants seulement) ;
+ *  - « fiches »  : fiches de procédure PR-00 à PR-12 (processus et transactions), pour tous.
  *
  * Les PDF livrés avec l'extension (dossier manuals/) sont copiés dans un dossier privé des téléversements, au nom
  * aléatoire et protégé (.htaccess, index.php), puis retirés du dossier de l'extension quand c'est possible :
@@ -39,6 +40,12 @@ final class Manuals {
 			'title' => 'Manuel de l\'enseignant',
 			'text'  => 'Classes et groupes Sensei, conception des scénarios, documents d\'activité et documents logistiques, étiquettes et kit mini-entrepôt, suivi en direct et interventions, résultats et tableau d\'indicateurs.',
 		),
+		'fiches'  => array(
+			'file'  => 'fiches-de-procedure.pdf',
+			'name'  => 'LogiERP-Fiches-de-procedure.pdf',
+			'title' => 'Fiches de procédure',
+			'text'  => 'Les processus de l\'entreprise et leurs transactions : procédure générale (PR-00), puis une fiche par processus (PR-01 à PR-12) : approvisionnement, réception, qualité, entreposage, préparation, expédition, production, inventaire, retours, corrections de stock.',
+		),
 	);
 
 	public function register(): void {
@@ -53,12 +60,22 @@ final class Manuals {
 		if ( 'teacher' === $key ) {
 			return current_user_can( Capabilities::VIEW_CLASS ) || current_user_can( Capabilities::SCENARIOS );
 		}
-		return 'user' === $key && ( current_user_can( Capabilities::PLAY ) || current_user_can( Capabilities::VIEW_CLASS ) || current_user_can( Capabilities::SCENARIOS ) );
+		return in_array( $key, array( 'user', 'fiches' ), true ) && ( current_user_can( Capabilities::PLAY ) || current_user_can( Capabilities::VIEW_CLASS ) || current_user_can( Capabilities::SCENARIOS ) );
 	}
 
 	/** Adresse d'ouverture (ou de téléchargement) ; la page se met après « #page= » côté navigateur. */
+	/**
+	 * Adresse du manuel. Le paramètre « v » change à chaque nouvelle version du PDF : le navigateur
+	 * ne peut donc jamais afficher une ancienne copie gardée en cache.
+	 */
 	public static function url( string $key, bool $download = false ): string {
-		return add_query_arg( array_filter( array( self::QUERY => $key, 'dl' => $download ? '1' : '' ) ), home_url( '/' ) );
+		return add_query_arg( array_filter( array( self::QUERY => $key, 'v' => self::stamp( $key ), 'dl' => $download ? '1' : '' ) ), home_url( '/' ) );
+	}
+
+	/** Empreinte courte du PDF servi (chemin, taille, date) : sert de numéro de version et d'ETag. */
+	public static function stamp( string $key ): string {
+		$f = self::file( $key );
+		return '' === $f ? '' : substr( md5( $f . '|' . filesize( $f ) . '|' . filemtime( $f ) . '|' . LOGIERP_VERSION ), 0, 10 );
 	}
 
 	/* ───────── Stockage privé ───────── */
@@ -105,7 +122,11 @@ final class Manuals {
 	 */
 	public static function ensure(): void {
 		$src = LOGIERP_DIR . 'manuals/';
-		if ( ! is_file( $src . self::LIST['user']['file'] ) && ! is_file( $src . self::LIST['teacher']['file'] ) ) {
+		$any = false;
+		foreach ( self::LIST as $m ) {
+			$any = $any || is_file( $src . $m['file'] );
+		}
+		if ( ! $any ) {
 			return; // Déjà en lieu sûr : rien à faire (cas de toutes les requêtes ordinaires).
 		}
 		self::dir();
@@ -118,9 +139,10 @@ final class Manuals {
 			$to = self::path( $key );
 			if ( ! is_file( $to ) || ( $s['bundled'][ $key ]['size'] ?? 0 ) !== filesize( $from ) || ( $s['bundled'][ $key ]['version'] ?? '' ) !== LOGIERP_VERSION ) {
 				if ( ! @copy( $from, $to ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- échec géré : le PDF reste servi depuis l'extension.
+					\LogiERP\Support\Logger::error( 'Manuel : copie vers le dossier privé impossible, la version livrée est servie depuis l\'extension.', array( 'manual' => $key ) );
 					continue;
 				}
-				$s['bundled'][ $key ] = array( 'size' => filesize( $from ), 'version' => LOGIERP_VERSION );
+				$s['bundled'][ $key ] = array( 'size' => filesize( $from ), 'version' => LOGIERP_VERSION, 'installed' => gmdate( 'Y-m-d H:i:s' ) );
 				update_option( self::OPT, $s, false );
 			}
 			// Le dossier de l'extension est public : on y retire la copie dès qu'elle est en lieu sûr.
@@ -138,10 +160,13 @@ final class Manuals {
 			return $c;
 		}
 		$p = self::path( $key );
-		if ( $p && is_file( $p ) ) {
+		$b = isset( self::LIST[ $key ] ) ? LOGIERP_DIR . 'manuals/' . self::LIST[ $key ]['file'] : '';
+		// La copie privée n'est utilisée que si elle correspond à la version installée ; sinon (copie impossible),
+		// le PDF livré avec l'extension est servi : jamais une ancienne version.
+		$fresh = ( self::state()['bundled'][ $key ]['version'] ?? '' ) === LOGIERP_VERSION;
+		if ( $p && is_file( $p ) && ( $fresh || ! ( $b && is_file( $b ) ) ) ) {
 			return $p;
 		}
-		$b = isset( self::LIST[ $key ] ) ? LOGIERP_DIR . 'manuals/' . self::LIST[ $key ]['file'] : '';
 		return $b && is_file( $b ) ? $b : '';
 	}
 
@@ -170,7 +195,17 @@ final class Manuals {
 	public static function info( string $key ): array {
 		$f = self::file( $key );
 		$s = self::state()[ $key ] ?? array();
-		return array( 'exists' => '' !== $f, 'size' => $f ? (int) filesize( $f ) : 0, 'custom' => ! empty( $s['custom'] ), 'updated' => (string) ( $s['updated'] ?? '' ), 'pages' => (int) ( self::map()[ $key ]['pages'] ?? 0 ) );
+		$b = self::state()['bundled'][ $key ] ?? array();
+		return array(
+			'exists'   => '' !== $f,
+			'size'     => $f ? (int) filesize( $f ) : 0,
+			'custom'   => ! empty( $s['custom'] ),
+			'updated'  => (string) ( $s['updated'] ?? '' ),
+			'pages'    => (int) ( self::map()[ $key ]['pages'] ?? 0 ),
+			// PDF déposé avant l'arrivée de la version livrée actuelle : il est probablement dépassé.
+			'outdated' => ! empty( $s['custom'] ) && ! empty( $b['installed'] ) && (string) ( $s['updated'] ?? '' ) < (string) $b['installed'],
+			'version'  => (string) ( $b['version'] ?? '' ),
+		);
 	}
 
 	/** Pages des procédures (version livrée seulement : un PDF remplacé peut avoir une autre pagination). */
@@ -199,6 +234,14 @@ final class Manuals {
 		return $out;
 	}
 
+	/** Transaction → page de la fiche de procédure (processus) où elle intervient. */
+	public static function fiche_pages(): array {
+		if ( ! empty( self::state()['fiches']['custom'] ) ) {
+			return array();
+		}
+		return array_map( 'intval', (array) ( self::map()['fiches']['tx'] ?? array() ) );
+	}
+
 	/* ───────── Envoi ───────── */
 
 	public function maybe_serve(): void {
@@ -223,12 +266,22 @@ final class Manuals {
 		while ( ob_get_level() ) {
 			ob_end_clean();
 		}
+		// Revalidation à chaque ouverture (réponse 304 sans contenu si le PDF n'a pas changé).
+		$etag = '"' . self::stamp( $key ) . '"';
+		header( 'Cache-Control: private, no-cache' );
+		header( 'ETag: ' . $etag );
+		header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', (int) filemtime( $f ) ) . ' GMT' );
+		header_remove( 'Expires' );
+		header_remove( 'Pragma' );
+		if ( isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) && trim( (string) wp_unslash( $_SERVER['HTTP_IF_NONE_MATCH'] ) ) === $etag ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- comparaison stricte.
+			status_header( 304 );
+			exit;
+		}
 		header( 'Content-Type: application/pdf' );
 		header( 'Content-Length: ' . filesize( $f ) );
 		header( 'Content-Disposition: ' . ( $dl ? 'attachment' : 'inline' ) . '; filename="' . self::LIST[ $key ]['name'] . '"' );
 		header( 'X-Content-Type-Options: nosniff' );
 		header( 'X-Robots-Tag: noindex, nofollow' );
-		header( 'Cache-Control: private, max-age=3600' );
 		$h = fopen( $f, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( $h ) {
 			while ( ! feof( $h ) ) {

@@ -249,6 +249,21 @@
 		return C.manual.url + (p ? '#page=' + p : '');
 	}
 	function openManual() { var u = manualUrl(); if (u) { window.open(u, '_blank', 'noopener'); } }
+	/** Fiches de procédure (PDF), ouvertes à la fiche du processus de la transaction affichée quand on la connaît. */
+	function ficheUrl() {
+		if (!C.fiches) { return ''; }
+		var m = /^#\/s\/\d+\/([A-Z0-9_]+)/.exec(location.hash || ''), p = m ? C.fiches.pages[m[1]] : 0;
+		return C.fiches.url + (p ? '#page=' + p : '');
+	}
+	function openFiche() { var u = ficheUrl(); if (u) { window.open(u, '_blank', 'noopener'); } }
+	function docBanner(title, text, d) {
+		return h('div', { class: 'lw-manual-banner' },
+			h('span', { class: 'lw-manual-ico', 'aria-hidden': 'true', text: 'PDF' }),
+			h('div', null, h('strong', { text: title }), h('p', { class: 'lw-small', text: text })),
+			h('div', { class: 'lw-manual-actions' },
+				h('a', { class: 'lw-btn lw-btn-secondary', href: d.url, target: '_blank', rel: 'noopener', text: 'Lire' }),
+				h('a', { class: 'lw-btn lw-btn-secondary', href: d.download, text: 'Télécharger le PDF' })));
+	}
 
 	function go(tcode, params) {
 		var q = params ? Object.keys(params).map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&') : '';
@@ -318,13 +333,10 @@
 					h('div', null, h('strong', { text: 'Votre entreprise de formation' }), h('p', { class: 'lw-small', text: C.company.tagline })),
 					btn('Découvrir l\'entreprise', 'lw-btn-secondary', function () { location.hash = '#/entreprise'; })));
 			}
-			if (C.manual) {
-				append(body, h('div', { class: 'lw-manual-banner' },
-					h('span', { class: 'lw-manual-ico', 'aria-hidden': 'true', text: 'PDF' }),
-					h('div', null, h('strong', { text: 'Manuel d\'utilisation' }), h('p', { class: 'lw-small', text: 'Toutes les transactions expliquées étape par étape, avec captures d\'écran. Dans une mission, le bouton « Manuel » ouvre directement la bonne procédure.' })),
-					h('div', { class: 'lw-manual-actions' },
-						h('a', { class: 'lw-btn lw-btn-secondary', href: C.manual.url, target: '_blank', rel: 'noopener', text: 'Lire' }),
-						h('a', { class: 'lw-btn lw-btn-secondary', href: C.manual.download, text: 'Télécharger le PDF' }))));
+			if (C.manual || C.fiches) {
+				append(body, h('div', { class: 'lw-docs' },
+					C.manual ? docBanner('Manuel d\'utilisation', 'Toutes les transactions expliquées étape par étape, avec captures d\'écran. Dans une mission, le bouton « Manuel » ouvre directement la bonne procédure.', C.manual) : null,
+					C.fiches ? docBanner('Fiches de procédure', 'Les processus de l\'entreprise et leurs transactions, de la commande client à l\'expédition (PR-00 à PR-12). Dans une mission, le bouton « Fiche » ouvre la fiche du processus en cours.', C.fiches) : null));
 			}
 			var hasOpen = me.sessions.some(function (x) { return x.status === 'EN_COURS'; });
 			append(isPhone() ? mdeBanner : body, h('div', { class: 'lw-mde-banner' + (isPhone() ? ' phone' : '') }, h('div', null, h('strong', { text: 'Terminal mobile (MDE)' }), h('p', { class: 'lw-small', text: isPhone() ? 'Vous êtes sur smartphone : scannez les palettes, les articles et les emplacements avec la caméra.' : 'Sur smartphone, ouvrez cette page et touchez « Terminal mobile » pour scanner avec la caméra.' })),
@@ -498,6 +510,7 @@
 			h('div', { class: 'lw-tools-right' },
 				btn('Consignes', 'lw-btn-secondary', function () { workEl.classList.toggle('with-tasks'); tasksEl.classList.toggle('lw-hidden'); }),
 				C.manual ? btn('Manuel', 'lw-btn-secondary', openManual, { title: 'Manuel d\'utilisation (PDF), ouvert à la procédure de la transaction affichée' }) : null,
+				C.fiches ? btn('Fiche', 'lw-btn-secondary', openFiche, { title: 'Fiche de procédure (PDF) du processus de la transaction affichée' }) : null,
 				btn('Terminal mobile', 'lw-btn-secondary', mdeInvite, { title: 'Utiliser un smartphone comme terminal de scan (MDE)' }),
 				S.session.readonly ? h('span', { class: 'lw-badge yellow', text: 'Lecture seule' }) : btn('Remettre ma session', 'lw-btn-key', submitSession)));
 		var sess = S.session;

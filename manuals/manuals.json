@@ -18,10 +18,11 @@
 "T.5": "Piloter la classe",
 "T.6": "Résultats",
 "T.7": "Données de base",
-"P": "Procédures de l’entreprise (SAP)"
+"P": "Procédures de l’entreprise (SAP)",
+"PR": "Processus et transactions"
 },
 "teacher": {
-"pages": 99,
+"pages": 100,
 "procedures": {
 "T.1.0": {
 "page": 5,
@@ -33,122 +34,126 @@
 },
 "T.1.2": {
 "page": 8,
-"title": "Lire et télécharger les manuels"
+"title": "Lire et télécharger les manuels et les fiches de procédure"
+},
+"T.1.3": {
+"page": 10,
+"title": "Mettre à jour LogiERP"
 },
 "T.2.0": {
-"page": 11,
+"page": 12,
 "title": "Créer une classe"
 },
 "T.2.1": {
-"page": 13,
+"page": 14,
 "title": "Inscrire les apprentis"
 },
 "T.2.2": {
-"page": 15,
+"page": 16,
 "title": "Reprendre un groupe Sensei"
 },
 "T.2.3": {
-"page": 17,
+"page": 18,
 "title": "Créer des groupes de travail"
 },
 "T.3.0": {
-"page": 20,
+"page": 21,
 "title": "Choisir et tester un scénario modèle"
 },
 "T.3.1": {
-"page": 22,
+"page": 23,
 "title": "Créer un scénario : cadre et environnement"
 },
 "T.3.10": {
-"page": 40,
+"page": 41,
 "title": "Les documents logistiques (commandes, bulletins de livraison, CMR)"
 },
 "T.3.2": {
-"page": 25,
+"page": 26,
 "title": "Préparer les documents : commandes et réalité de la livraison"
 },
 "T.3.3": {
-"page": 28,
+"page": 29,
 "title": "Définir le stock de départ"
 },
 "T.3.4": {
-"page": 29,
+"page": 30,
 "title": "Programmer des imprévus"
 },
 "T.3.5": {
-"page": 31,
+"page": 32,
 "title": "Rédiger les consignes"
 },
 "T.3.6": {
-"page": 32,
+"page": 33,
 "title": "Définir la correction automatique"
 },
 "T.3.7": {
-"page": 34,
+"page": 35,
 "title": "Tester, publier et partager un scénario"
 },
 "T.3.8": {
-"page": 35,
+"page": 36,
 "title": "Le document d’activité (fiche de mission)"
 },
 "T.3.9": {
-"page": 39,
+"page": 40,
 "title": "Dupliquer et adapter un scénario existant"
 },
 "T.4.0": {
-"page": 44,
+"page": 45,
 "title": "Imprimer des étiquettes d’articles (EAN-13)"
 },
 "T.4.1": {
-"page": 46,
+"page": 47,
 "title": "Imprimer des étiquettes d’emplacements"
 },
 "T.4.2": {
-"page": 47,
+"page": 48,
 "title": "Imprimer les étiquettes des palettes d’un arrivage (SSCC)"
 },
 "T.4.3": {
-"page": 49,
+"page": 50,
 "title": "Étiquettes de documents et étiquettes libres"
 },
 "T.4.4": {
-"page": 51,
+"page": 52,
 "title": "Monter un mini-entrepôt en classe (kit)"
 },
 "T.5.0": {
-"page": 56,
+"page": 57,
 "title": "Assigner un scénario et distribuer le document d’activité"
 },
 "T.5.1": {
-"page": 59,
+"page": 60,
 "title": "Suivre la classe en direct, envoyer un message, mettre en pause"
 },
 "T.5.2": {
-"page": 60,
+"page": 61,
 "title": "Déclencher un imprévu en direct"
 },
 "T.5.3": {
-"page": 61,
+"page": 62,
 "title": "Contrôler le travail d’un apprenti"
 },
 "T.5.4": {
-"page": 62,
+"page": 63,
 "title": "Intervenir dans la mission : client, rupture, commande urgente"
 },
 "T.5.5": {
-"page": 65,
+"page": 66,
 "title": "Mission en groupe et codes personnels"
 },
 "T.6.0": {
-"page": 70,
+"page": 71,
 "title": "Corriger, ajuster et publier les notes"
 },
 "T.6.1": {
-"page": 73,
+"page": 74,
 "title": "Le tableau d’indicateurs de fin de mission"
 },
 "T.7.0": {
-"page": 78,
+"page": 79,
 "title": "Créer un article et imprimer son étiquette"
 }
 }
@@ -174,7 +179,7 @@
 },
 "A.1.4": {
 "page": 19,
-"title": "Ouvrir le manuel d’utilisation"
+"title": "Ouvrir le manuel d’utilisation et les fiches de procédure"
 },
 "A.1.5": {
 "page": 20,
@@ -412,6 +417,144 @@
 "page": 158,
 "title": "Utiliser toute l’application sur smartphone"
 }
+}
+},
+"fiches": {
+"pages": 14,
+"procedures": {
+"PR-00": {
+"page": 2,
+"title": "De la commande client à l'expédition"
+},
+"PR-01": {
+"page": 3,
+"title": "Approvisionnement"
+},
+"PR-02": {
+"page": 4,
+"title": "Réception des marchandises"
+},
+"PR-03": {
+"page": 5,
+"title": "Contrôle qualité et blocage"
+},
+"PR-04": {
+"page": 6,
+"title": "Entreposage"
+},
+"PR-05": {
+"page": 7,
+"title": "Réception de vrac en citerne"
+},
+"PR-06": {
+"page": 8,
+"title": "Préparation de commande"
+},
+"PR-07": {
+"page": 9,
+"title": "Expédition et transport"
+},
+"PR-08": {
+"page": 10,
+"title": "Emballages consignés et conteneurs loués"
+},
+"PR-09": {
+"page": 11,
+"title": "Production par ordre de procédé"
+},
+"PR-10": {
+"page": 12,
+"title": "Inventaire"
+},
+"PR-11": {
+"page": 13,
+"title": "Retours clients"
+},
+"PR-12": {
+"page": 14,
+"title": "Corrections de stock"
+}
+},
+"tx": {
+"CO01": 11,
+"CO02": 11,
+"CO11N": 11,
+"COR1": 11,
+"COR2": 11,
+"COR3": 11,
+"COR5": 11,
+"COR8": 11,
+"CORK": 11,
+"CORS": 11,
+"CS03": 11,
+"CS15": 11,
+"HU02": 8,
+"HU03": 4,
+"LI21": 6,
+"LM00": 6,
+"LP10": 6,
+"LS26": 11,
+"LT01": 6,
+"LT10": 5,
+"LT12": 6,
+"LT13": 6,
+"LT15": 8,
+"LT31": 6,
+"LX03": 6,
+"MB03": 14,
+"MB11": 5,
+"MB51": 14,
+"MB52": 14,
+"MB58": 10,
+"MB5M": 5,
+"MBST": 14,
+"MD01": 3,
+"MD02": 3,
+"MD04": 3,
+"ME21N": 3,
+"ME22N": 3,
+"ME23N": 3,
+"ME2L": 3,
+"ME2M": 3,
+"MI01": 12,
+"MI04": 12,
+"MI07": 12,
+"MIGO": 4,
+"MIGO_GR": 4,
+"MM03": 14,
+"MMBE": 14,
+"QA11": 5,
+"QA32": 4,
+"SLG1": 2,
+"SMEN": 2,
+"VA01": 8,
+"VA02": 8,
+"VA03": 8,
+"VA05": 8,
+"VL01N": 8,
+"VL02N": 8,
+"VL06O": 9,
+"VL06T": 9,
+"VL09": 9,
+"VL10": 8,
+"VL71": 9,
+"VL74": 9,
+"VT01N": 9,
+"VT02N": 9,
+"VT03N": 9,
+"VT04": 9,
+"VT11": 9,
+"VT70": 9,
+"XD03": 8,
+"XK03": 3,
+"Y_P01": 3,
+"ZCMR": 4,
+"ZENTR": 2,
+"ZMAP": 6,
+"ZPEMB": 10,
+"ZRAIL": 7,
+"ZRET": 13,
+"ZVLGUT": 10
 }
 }
 }

@@ -23,7 +23,7 @@ final class ManualsPage {
 	}
 
 	public function render(): void {
-		Ui::header( 'Manuels', 'Les manuels de LogiERP, à lire à l\'écran ou à télécharger en PDF. Les apprentis trouvent le manuel d\'utilisation dans le simulateur (portail et bouton « Manuel » de chaque session).' );
+		Ui::header( 'Manuels', 'Les manuels de LogiERP, à lire à l\'écran ou à télécharger en PDF. Les apprentis trouvent le manuel d\'utilisation et les fiches de procédure dans le simulateur (portail, boutons « Manuel » et « Fiche » de chaque session).' );
 		$map = Manuals::map();
 		echo '<div class="lw-manuals">';
 		foreach ( Manuals::LIST as $key => $m ) {
@@ -31,8 +31,11 @@ final class ManualsPage {
 				continue;
 			}
 			$i = Manuals::info( $key );
-			echo '<div class="lw-box lw-manual"><div class="lw-manual-head"><span class="lw-manual-ico" aria-hidden="true">PDF</span><div><h2>' . esc_html( $m['title'] ) . '</h2><p class="description">' . esc_html( 'user' === $key ? 'Pour les apprentis et les enseignants.' : 'Pour les enseignants.' ) . '</p></div></div>';
+			echo '<div class="lw-box lw-manual"><div class="lw-manual-head"><span class="lw-manual-ico" aria-hidden="true">PDF</span><div><h2>' . esc_html( $m['title'] ) . '</h2><p class="description">' . esc_html( 'teacher' === $key ? 'Pour les enseignants.' : 'Pour les apprentis et les enseignants.' ) . '</p></div></div>';
 			echo '<p>' . esc_html( $m['text'] ) . '</p>';
+			if ( $i['outdated'] ) {
+				echo '<div class="notice notice-warning inline"><p><strong>Une version plus récente de ce manuel est livrée avec LogiERP ' . esc_html( $i['version'] ) . '.</strong> Le PDF déposé le ' . esc_html( Ui::fr_datetime( $i['updated'] ) ) . ' reste affiché tant qu\'il n\'est pas retiré' . ( current_user_can( Capabilities::SETTINGS ) && ! Ui::is_front() ? ' : utilisez « Revenir à la version livrée avec LogiERP » ci-dessous.' : ' : demandez à l\'administrateur du site de revenir à la version livrée.' ) . '</p></div>';
+			}
 			if ( $i['exists'] ) {
 				echo '<p class="lw-manual-meta">' . esc_html( trim( ( $i['pages'] && ! $i['custom'] ? $i['pages'] . ' pages · ' : '' ) . size_format( $i['size'], 1 ) . ( $i['custom'] ? ' · version déposée le ' . Ui::fr_datetime( $i['updated'] ) : '' ) ) ) . '</p>';
 				echo '<p><a class="button button-primary" target="_blank" rel="noopener" href="' . esc_url( Manuals::url( $key ) ) . '">Ouvrir</a> <a class="button" href="' . esc_url( Manuals::url( $key, true ) ) . '">Télécharger le PDF</a></p>';
@@ -45,10 +48,10 @@ final class ManualsPage {
 				uasort( $procs, static fn( $a, $b ) => (int) $a['page'] <=> (int) $b['page'] );
 				$groups = array();
 				foreach ( $procs as $code => $p ) {
-					$g              = 'teacher' === $key ? substr( $code, 0, 3 ) : $code[0];
+					$g              = 'teacher' === $key ? substr( $code, 0, 3 ) : ( 'fiches' === $key ? 'PR' : $code[0] );
 					$groups[ $g ][] = array( $code, $p );
 				}
-				echo '<details class="lw-manual-toc"><summary>Sommaire : aller directement à une procédure</summary>';
+				echo '<details class="lw-manual-toc"><summary>' . esc_html( 'fiches' === $key ? 'Sommaire : aller directement à une fiche' : 'Sommaire : aller directement à une procédure' ) . '</summary>';
 				foreach ( $groups as $g => $items ) {
 					echo '<h3>' . esc_html( $g . ' · ' . ( $map['domains'][ $g ] ?? '' ) ) . '</h3><ul>';
 					foreach ( $items as [ $code, $p ] ) {
@@ -59,7 +62,7 @@ final class ManualsPage {
 				echo '</details>';
 			}
 			if ( current_user_can( Capabilities::SETTINGS ) && ! Ui::is_front() ) {
-				echo '<details class="lw-manual-admin"><summary>Administrateur : remplacer ce manuel</summary>';
+				echo '<details class="lw-manual-admin"' . ( $i['outdated'] ? ' open' : '' ) . '><summary>Administrateur : remplacer ce manuel</summary>';
 				Ui::form_open( 'logierp_manual_upload', array( 'manual' => $key ), 'enctype="multipart/form-data"' );
 				echo '<p><input type="file" name="pdf" accept="application/pdf,.pdf" required> ';
 				Ui::form_close( 'Déposer le PDF', 'button' );
