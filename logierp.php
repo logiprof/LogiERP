@@ -3,7 +3,7 @@
  * Plugin Name:       LogiERP
  * Plugin URI:        https://logiprof.ch
  * Description:       Simulateur ERP/WMS pédagogique : achats, réception, entreposage chaotique ou par emplacements fixes, stock, ventes, préparation, expédition, production, inventaire, retours. Interface enseignant pour créer des scénarios et corriger automatiquement. Aux couleurs LogiOne / LogiHub.
- * Version:           2.3.0
+ * Version:           2.3.1
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            LogiProf
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LOGIERP_VERSION', '2.3.0' );
+define( 'LOGIERP_VERSION', '2.3.1' );
 define( 'LOGIERP_DB_VERSION', '2.2.0' );
 define( 'LOGIERP_FILE', __FILE__ );
 define( 'LOGIERP_DIR', plugin_dir_path( __FILE__ ) );

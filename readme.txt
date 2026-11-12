@@ -3,7 +3,7 @@ Contributors: logiprof
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv2 or later
 
 Simulateur ERP / WMS pédagogique pour la formation en logistique (CFC logisticien·ne et formations continues).
@@ -56,6 +56,11 @@ gestion de stock, ordres de transfert, ventes, préparation FIFO / FEFO, emballa
 * La suppression de l'extension conserve les données, sauf si l'option correspondante est cochée.
 
 == Changelog ==
+
+= 2.3.1 =
+* Réglages › Mises à jour : la première vérification se lance d'elle-même à l'ouverture de la page (résultat ensuite gardé en cache plusieurs heures).
+* Le lien « Activer les mises à jour auto » de la page Extensions reste affiché même quand GitHub ne répond pas (dépôt privé sans jeton, panne réseau).
+* Première mise à jour distribuée automatiquement depuis GitHub.
 
 = 2.3.0 =
 * Mises à jour intégrées à WordPress : chaque nouvelle version publiée sur github.com/logiprof/LogiERP apparaît dans Extensions et dans Tableau de bord › Mises à jour, s'installe en un clic et peut être automatique (« Activer les mises à jour auto »).

@@ -134,7 +134,14 @@ final class Updater {
 		}
 		$rel = self::latest();
 		if ( null === $rel ) {
-			return $update;
+			// GitHub injoignable : l'extension reste déclarée « à jour », pour que WordPress garde
+			// le lien « Activer les mises à jour auto » et la fenêtre de détails. Aucun paquet n'est proposé.
+			return array(
+				'slug'    => self::SLUG,
+				'version' => LOGIERP_VERSION,
+				'url'     => 'https://github.com/' . self::REPO,
+				'package' => '',
+			);
 		}
 		return array(
 			'id'           => 'github.com/' . self::REPO,

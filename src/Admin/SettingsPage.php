@@ -45,7 +45,12 @@ final class SettingsPage {
 
 	/** État des mises à jour (releases GitHub). */
 	private static function update_box(): void {
-		$st  = \LogiERP\Core\Updater::status();
+		$st = \LogiERP\Core\Updater::status();
+		if ( ! $st['checked'] ) {
+			// Première visite (ou cache expiré) : une vérification, puis le résultat reste en cache plusieurs heures.
+			\LogiERP\Core\Updater::latest();
+			$st = \LogiERP\Core\Updater::status();
+		}
 		$rel = $st['release'];
 		echo '<div class="lw-box"><h2>Mises à jour</h2><table class="form-table">';
 		Ui::field( 'Version installée', '<strong>' . esc_html( LOGIERP_VERSION ) . '</strong>' );
